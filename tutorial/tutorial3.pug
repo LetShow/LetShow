@@ -1,0 +1,57 @@
+extends ./_layout_site.pug
+
+block css
+  link(rel='stylesheet', href='/css/site.css')
+block content
+  -var index=2
+  .container
+    .row
+      h2  第#{index+1}课：#{tutorial[index].title}
+      blockquote #{tutorial[index].describe}
+      .col.col-xs-12
+        pre
+          | var f = new letshow('.cdiv',{scene:'paper',width:600,height:800});
+          | var l = f.add('lable',{left:200,top:200,text:'rotate it',key:'red'});
+          | $('#btn_lable').on('click',function(){
+          |   var r = f.add('lable',{left:100,top:100,key:'Name'});
+          | });
+          | $('#btn_textbox').on('click',function(){
+          |   var t = f.add('textbox',{left:100,top:200,key:'Age'});
+          | });
+          | $('#btn_rotate').on('click',function(){
+          |   l.set('angle', 45);
+          |   f.refresh();
+          | });
+      #btn_lable.btn.btn-lg.btn-default.toolbox(style="width:60px;height:60;")
+        span.glyphicon.glyphicon-font
+      #btn_textbox.btn.btn-lg.btn-default.toolbox(style="width:60px;height:60;")
+        span ab|
+      #btn_line.btn.btn-lg.btn-default.toolbox(style="width:60px;height:60;")
+        span(style="color: #ff0000;") ─
+      #btn_rotate.btn.btn-lg.btn-default.toolbox(style="width:60px;height:60;")
+        span.glyphicon.glyphicon-repeat
+    br
+    .row
+      .col.col-xs-12
+        span This is DIV
+        .cdiv
+block func
+    // - https://cdn.bootcss.com/fabric.js/2.3.0/fabric.min.js
+    script(src='/js/fabric.min.js')
+    script(src='/js/letshow.bundle.js')
+    script
+      | var f = new letshow('.cdiv',{scene:'paper',width:600,height:800});
+      | var l = f.add('lable',{left:200,top:200,text:'rotate me',key:'red'});
+      | $('#btn_lable').on('click',function(){
+      |   var r = f.add('lable',{left:100,top:100,key:'Name'});
+      | });
+      | $('#btn_textbox').on('click',function(){
+      |   var t = f.add('textbox',{left:100,top:200,key:'Age'});
+      | });
+      | $('#btn_line').on('click',function(){
+      |   var t = f.add('line',{coords:[10,10,100,50],stroke:'red',strokeWidth:2});
+      | });
+      | $('#btn_rotate').on('click',function(){
+      |   l.set('angle', 45);
+      |   f.refresh();
+      | });

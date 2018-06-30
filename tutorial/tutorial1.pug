@@ -1,0 +1,42 @@
+extends ./_layout_site.pug
+
+block css
+  link(rel='stylesheet', href='/css/site.css')
+block content
+  -var index=0
+  .container
+    .row
+      h2  第#{index+1}课：#{tutorial[index].title}
+      blockquote #{tutorial[index].describe}
+      .col.col-xs-12
+        h3 1.简介
+        h4
+          | <b>LetShow</b> 中文名为<b>来秀</b>
+          | 使用<b>JavaScript</b>制作，
+        h3 2.安装
+        h4
+          | LetShow插件只有一个js文件，它压缩后的文件名为letshow.min.js
+          | 将这个文件放置在你js目录下，使用html引用即可。
+        h3 3.基础模板
+        h4
+          | 复制下面的代码，保存为一个html文件即可。
+        pre
+          | &lt;!DOCTYPE html&gt;
+          | &lt;html lang=&quot;zh-CN&quot;&gt;
+          |  &lt;head&gt;
+          |    &lt;meta charset=&quot;utf-8&quot;&gt;
+          |    &lt;title&gt;LetShow Template&lt;/title&gt;
+          |  &lt;/head&gt;
+          |  &lt;body&gt;
+          |    &lt;!-- &#20320;&#30340;&#20195;&#30721; --&gt;
+          |    &lt;!-- jQuery (LetShow &#20381;&#36182; jQuery&#65292;&#25152;&#20197;&#24517;&#39035;&#25918;&#22312;&#21069;&#36793;) --&gt;
+          |    &lt;script src=&quot;https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js&quot;&gt;&lt;/script&gt;
+          |    &lt;!-- &#21152;&#36733; fabricjs --&gt;
+          |    &lt;script src=&quot;https://cdn.bootcss.com/fabric.js/2.3.0/fabric.min.js&quot;&gt;&lt;/script&gt;
+          |    &lt;script src=&quot;/js/letshow.min.js&quot;&gt;&lt;/script&gt;
+          |  &lt;/body&gt;
+          |&lt;/html&gt;
+block func
+    // - https://cdn.bootcss.com/fabric.js/2.3.0/fabric.min.js
+    script(src='/js/fabric.min.js')
+    script(src='/js/letshow.bundle.js')

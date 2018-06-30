@@ -1,0 +1,43 @@
+extends ./_layout_site.pug
+
+block css
+  link(rel='stylesheet', href='/css/site.css')
+block content
+  -var index=1
+  .container
+    .row
+      h2  第#{index+1}课：#{tutorial[index].title}
+      blockquote #{tutorial[index].describe}
+      .col.col-xs-12
+        pre
+          | var f = new letshow('.div1',{scene:'paper',width:250,height:400});//使用 <code>new letshow()</code>来创建一个容器
+          |  $('#btn_bind1').on('click',function(){
+          |    f.bind('.div1');//然后使用<code>bind</code>修改需要绑定的父节点
+          |  });
+          |  $('#btn_bind2').on('click',function(){
+          |    f.bind('.div2');
+          |  });
+      #btn_bind1.btn.btn-lg.btn-default.toolbox(style='width:60px;height:60;')
+        span 1
+      #btn_bind2.btn.btn-lg.btn-default.toolbox(style='width:60px;height:60;')
+        span 2
+    br
+    .row
+      .col.col-xs-6
+        span This is DIV1
+        .div1(style='width:400px;height:250px;border-style: solid solid solid solid;')
+      .col.col-xs-6
+        span This is DIV2
+        .div2(style='width:400px;height:250px;border-style: solid solid solid solid;')
+block func
+    // - https://cdn.bootcss.com/fabric.js/2.3.0/fabric.min.js
+    script(src='/js/fabric.min.js')
+    script(src='/js/letshow.bundle.js')
+    script
+      | var f = new letshow('.div1',{scene:'paper',width:250,height:400});
+      | $('#btn_bind1').on('click',function(){
+      |   f.bind('.div1');
+      | });
+      | $('#btn_bind2').on('click',function(){
+      |   f.bind('.div2');
+      | });

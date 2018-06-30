@@ -1,0 +1,70 @@
+extends ./_layout_site.pug
+
+block css
+  link(rel='stylesheet', href='/css/site.css')
+block content
+  -var index=3
+  .container
+    .row
+      h2  第#{index+1}课：#{tutorial[index].title}
+      blockquote #{tutorial[index].describe}
+      h3  1.调整大小
+      .col.col-xs-12
+        pre
+          | var f = new letshow('.cdiv',{scene:'paper',width:500,height:600});
+          | $('#btn_ok').on('click',function(){
+          |   var w = $('#divw').val();
+          |   var h = $('#divh').val();
+          |   f.resize(w,h);
+          | });
+      h3  2.切换模式
+        pre
+          | asd
+      .row
+        .col.col-xs-3
+          .input-group.input-group-lg
+            span.input-group-addon#divwidth  宽度
+            input#divw.form-control(type='text',placeholder='输入宽度值',aria-describedby='divwidth',value='500')
+        .col.col-xs-3
+          .input-group.input-group-lg
+            span.input-group-addon#divheight  高度
+            input#divh.form-control(type='text',placeholder='输入高度值',aria-describedby='divheight',value='600')
+        .col.col-xs-1
+          #btn_ok.btn.btn-lg.btn-default
+            span 设置
+        .col.col-xs-5
+          .btn-group(role="group",aria-label="...")
+            #btn_v1.btn.btn-lg.btn-default 设计
+            #btn_v2.btn.btn-lg.btn-default 编辑
+            #btn_v3.btn.btn-lg.btn-default 校核
+            #btn_v4.btn.btn-lg.btn-default 打印
+    br
+    .row
+      .col.col-xs-12
+        .cdiv(style='width:800px;height:600px;')
+block func
+    // - https://cdn.bootcss.com/fabric.js/2.3.0/fabric.min.js
+    script(src='/js/fabric.min.js')
+    script(src='/js/letshow.bundle.js')
+    script
+      | var f = new letshow('.cdiv',{scene:'paper',width:500,height:600});
+      | var l = f.add('lable',{left:50,top:50,text:'lable',key:'A'});
+      | var t = f.add('textbox',{left:50,top:100,text:'textbox',key:'B'});
+      | $('#btn_ok').on('click',function(){
+      |   var w = $('#divw').val();
+      |   var h = $('#divh').val();
+      |   f.resize(w,h);
+      | });
+      | $('#btn_v1').on('click',function(){
+      |   var b = f.fabric.getObjects();
+      |   f.view('design');
+      | });
+      | $('#btn_v2').on('click',function(){
+      |   f.view('edit');
+      | });
+      | $('#btn_v3').on('click',function(){
+      |   f.view('check');
+      | });
+      | $('#btn_v4').on('click',function(){
+      |   f.view('print');
+      | });
